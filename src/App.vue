@@ -4,12 +4,18 @@
       absolute
       color="teal lighten-3"
       dark
-      scroll-off-screen
-      scroll-target="#scrolling-techniques"
     >
-      <v-toolbar-title>КОНКУРСЫ</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" class="router-link">
+          КОНКУРСЫ
+        </router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-title>Название нового конкурса</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" class="router-link">
+          Новый конкурс
+        </router-link>
+      </v-toolbar-title>
     </v-toolbar>
     <main>
       <router-view></router-view>
@@ -31,3 +37,12 @@
   }
 </script>
 
+<style scoped>
+main {
+  margin-top: 80px;
+}
+.router-link {
+  text-decoration: none;
+  color: white;
+}
+</style>
