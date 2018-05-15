@@ -7,6 +7,7 @@
     >
       <v-toolbar-title>
         <router-link to="/" class="router-link">
+          <v-icon left>filter_vintage</v-icon>
           КОНКУРСЫ
         </router-link>
       </v-toolbar-title>
