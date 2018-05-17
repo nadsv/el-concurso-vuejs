@@ -7,14 +7,14 @@
     >
       <v-toolbar-title>
         <router-link to="/" class="router-link">
-          <v-icon left>filter_vintage</v-icon>
-          КОНКУРСЫ
+          <font-awesome-icon icon="image" size="lg"/>
+          КОНКУРС
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-title>
         <router-link to="/" class="router-link">
-          Новый конкурс
+          Мое лучшее селфи
         </router-link>
       </v-toolbar-title>
     </v-toolbar>
@@ -25,17 +25,19 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        sideNav: false
-      }
-    },
-    computed: {
-    },
-    methods: {
+// import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+export default {
+  data () {
+    return {
+      // name: 'FAExample'
     }
-  }
+  },
+  methods: {
+  }/* ,
+   components: {
+    FontAwesomeIcon
+  } */
+}
 </script>
 
 <style scoped>
