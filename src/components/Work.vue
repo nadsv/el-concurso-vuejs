@@ -57,6 +57,7 @@ export default {
     check (work) {
       work.check = !work.check
       work.counter = work.counter + (work.check ? 1 : -1)
+      this.$store.commit('increment')
     }
   },
   components: {
