@@ -15,6 +15,11 @@ export default new Router({
     {
       path: '/work',
       component: Work
+    },
+    {
+      path: '/work/:id',
+      component: Work,
+      props: true
     }
   ]
 })

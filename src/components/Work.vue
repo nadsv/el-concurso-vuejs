@@ -1,11 +1,11 @@
 <template>
   <v-container fluid>
-    <h2>Солодилова Елена Ивановна</h2>
-    <p>Правовой отдел</p>
-    <v-layout class="mb-3" v-for="work in works" :key="work.id">
+    <h2>{{ contestant.name }}</h2>
+    <p>{{ contestant.depart }}</p>
+    <v-layout class="mb-3" v-for="work in contestant.works" :key="work.id">
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
-          <v-card-media :src="work.link" height="200px" @click.native.stop="open(work.link)">
+          <v-card-media :src="work.link" height="200px" @click.native.stop="open(work.link)" style="cursor: pointer">
           </v-card-media>
           <v-card-actions>
             <v-btn flat :color=" work.check ? 'orange' : 'grey' " @click.prevent="check(work)">
@@ -38,15 +38,16 @@
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 export default {
+  props: ['id'],
   data () {
     return {
       dialog: false,
-      imageLink: '',
-      works: [
-        {id: 1, link: 'http://localhost:8080/static/works/1/1.jpg', counter: 12, check: false},
-        {id: 2, link: 'http://localhost:8080/static/works/1/2.jpg', counter: 45, check: false},
-        {id: 3, link: 'http://localhost:8080/static/works/1/3.jpg', counter: 2, check: false}
-      ]
+      imageLink: ''
+    }
+  },
+  computed: {
+    contestant () {
+      return this.$store.getters.contestant(this.id)
     }
   },
   methods: {
@@ -57,7 +58,6 @@ export default {
     check (work) {
       work.check = !work.check
       work.counter = work.counter + (work.check ? 1 : -1)
-      this.$store.commit('increment')
     }
   },
   components: {

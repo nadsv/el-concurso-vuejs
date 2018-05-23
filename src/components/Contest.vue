@@ -10,7 +10,7 @@
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat color="orange" @click="open">
+          <v-btn flat color="orange" @click="open(contestant.id)">
             <font-awesome-icon icon="arrow-alt-circle-right" pull="left" />
             Открыть
           </v-btn>
@@ -29,32 +29,19 @@
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 export default {
-  data () {
+  /* data () {
     return {
-      contestants: [
-        {
-          id: 1,
-          name: 'Солодилова Елена Ивановна',
-          depart: 'Правовой отдел'
-        },
-        {
-          id: 2,
-          name: 'Свежинцева Надежда Анатольевна',
-          depart: 'Отдел информатизации'
-        },
-        {
-          id: 3,
-          name: 'Иванов Иван Васильевич',
-          depart: 'Отдел информатизации'
-        }
-      ]
+      contestants: []
+    }
+  }, */
+  computed: {
+    contestants () {
+      return this.$store.getters.contestants
     }
   },
-  computed: {
-  },
   methods: {
-    open () {
-      this.$router.push('/work')
+    open (id) {
+      this.$router.push('/work/' + id)
     }
   },
   components: {
