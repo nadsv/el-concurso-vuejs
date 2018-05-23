@@ -43,9 +43,9 @@ export default {
       dialog: false,
       imageLink: '',
       works: [
-        {id: 1, link: '/static/works/1/1.jpg', counter: 12, check: false},
-        {id: 2, link: '/static/works/1/2.jpg', counter: 45, check: false},
-        {id: 3, link: '/static/works/1/3.jpg', counter: 2, check: false}
+        {id: 1, link: 'http://localhost:8080/static/works/1/1.jpg', counter: 12, check: false},
+        {id: 2, link: 'http://localhost:8080/static/works/1/2.jpg', counter: 45, check: false},
+        {id: 3, link: 'http://localhost:8080/static/works/1/3.jpg', counter: 2, check: false}
       ]
     }
   },
