@@ -21,7 +21,7 @@
         <v-card-media :src="imageLink" height="calc(100vh - 55px)" contain></v-card-media>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="teal lighten-3" flat="flat" @click.native="dialog = false">Закрыть</v-btn>
+          <v-btn color="green lighten-2" flat="flat" @click.native="dialog = false">Закрыть</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -61,8 +61,7 @@ export default {
     }
   },
   components: {
-    FontAwesomeIcon /*,
-    'app-work-view': WorkView */
+    FontAwesomeIcon
   }
 }
 </script>

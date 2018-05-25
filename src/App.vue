@@ -2,7 +2,7 @@
   <v-app>
     <v-toolbar
       absolute
-      color="teal lighten-3"
+      color="green lighten-1"
       dark
     >
       <v-toolbar-title>
@@ -14,7 +14,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-title>
         <router-link to="/" class="router-link">
-          Мое лучшее селфи
+          Мое лучшее фото
         </router-link>
       </v-toolbar-title>
     </v-toolbar>

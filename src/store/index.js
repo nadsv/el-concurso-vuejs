@@ -40,8 +40,8 @@ export default new Vuex.Store({
       },
       {
         id: '3',
-        name: 'Иванов Иван Васильевич',
-        depart: 'Отдел информатизации',
+        name: 'Горпинченко Марина Федоровна',
+        depart: 'Отдел обеспечения инвалидов техническими средствами реабилитации',
         works: [
           {id: 1, link: 'http://localhost:8080/static/works/3/1.jpg', counter: 5, check: true}
         ]
