@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     contestant () {
-      return this.$store.getters.contestant(this.id)
+      return this.$store.getters.contestant
     }
   },
   methods: {
