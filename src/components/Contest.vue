@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     open (id) {
+      this.$store.dispatch('loadContestant', id)
       this.$router.push('/work/' + id)
     }
   },

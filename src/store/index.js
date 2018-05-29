@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const PATH_STATIC = 'http://localhost:8080/static'
+// const PATH_STATIC = 'http://localhost:8080/static'
 
 export default new Vuex.Store({
   state: {
@@ -27,20 +27,20 @@ export default new Vuex.Store({
         commit('setContestants', contestants)
       }).catch(error => console.log(error))
     },
-    loadContestant ({commit}) {
-      const contestant = {
-        id: 1,
-        name: 'Солодилова Елена Ивановна',
-        depart: 'Правовой отдел',
-        works: [
-          {id: 1, link: PATH_STATIC + '/works/1/1.jpg', counter: 12, check: false},
-          {id: 2, link: PATH_STATIC + '/works/1/2.jpg', counter: 45, check: false},
-          {id: 3, link: PATH_STATIC + '/works/1/3.jpg', counter: 2, check: false}
-        ]
-      }
-      commit('setContestants', contestant)
+
+    loadContestant ({commit, state}, id) {
+      let contestant = state.contestants.find((item) => {
+        return item.id === id
+      })
+      axios.get('/get-works.php?id=' + id).then(res => {
+        const works = res.data
+        contestant['works'] = works
+        console.log(contestant)
+        commit('setContestant', contestant)
+      }).catch(error => console.log(error))
     }
   },
+
   getters: {
     contestants (state) {
       return state.contestants
