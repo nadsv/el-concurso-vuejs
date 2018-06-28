@@ -2,13 +2,13 @@
   <v-container fluid>
     <h2>{{ contestant.name }}</h2>
     <p>{{ contestant.depart }}</p>
-    <v-layout class="mb-3" v-for="work in contestant.works" :key="work.id">
+    <v-layout class="mb-3" v-for="(work, index) in works" :key="work.id">
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-media :src="work.link" height="200px" @click.native.stop="open(work.link)" style="cursor: pointer">
           </v-card-media>
           <v-card-actions>
-            <v-btn flat :color=" work.check ? 'orange' : 'grey' " @click.prevent="check(work)">
+            <v-btn flat :color=" work.check ? 'orange' : 'grey' " @click.prevent="check(index)">
               <font-awesome-icon icon="thumbs-up" pull="left" />
               <span class="counter">{{work.counter}}</span> Мне нравится
             </v-btn>
@@ -48,6 +48,9 @@ export default {
   computed: {
     contestant () {
       return this.$store.getters.contestant
+    },
+    works () {
+      return this.$store.getters.works
     }
   },
   methods: {
@@ -55,9 +58,14 @@ export default {
       this.imageLink = link
       this.dialog = true
     },
-    check (work) {
-      work.check = !work.check
-      work.counter = work.counter + (work.check ? 1 : -1)
+    check (index) {
+      const work = this.works[index]
+      const counterInfo = {
+        work_id: work._id.$id,
+        id: index,
+        inc: !work.check ? 1 : -1
+      }
+      this.$store.dispatch('saveCounter', counterInfo)
     }
   },
   components: {

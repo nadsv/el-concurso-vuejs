@@ -29,11 +29,6 @@
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 export default {
-  /* data () {
-    return {
-      contestants: []
-    }
-  }, */
   computed: {
     contestants () {
       return this.$store.getters.contestants

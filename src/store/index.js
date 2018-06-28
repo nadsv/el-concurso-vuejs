@@ -8,9 +8,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    count: 0,
     contestants: [],
-    contestant: {}
+    contestant: {},
+    works: []
   },
   mutations: {
     setContestants (state, payload) {
@@ -18,6 +18,17 @@ export default new Vuex.Store({
     },
     setContestant (state, payload) {
       state.contestant = payload
+    },
+    setWorks (state, payload) {
+      state.works = payload
+    },
+    setCounter (state, payload) {
+      let works = [ ...state.works ]
+      works[payload.id].counter += payload.inc
+      works[payload.id].check = !works[payload.id].check
+      Vue.set(state.works, payload.id, works[payload.id])
+      console.log(state.works)
+      // this.state.contestant.name = this.state.contestant.name + 1
     }
   },
   actions: {
@@ -29,14 +40,25 @@ export default new Vuex.Store({
     },
 
     loadContestant ({commit, state}, id) {
+      commit('setContestant', {})
       let contestant = state.contestants.find((item) => {
         return item.id === id
       })
+      commit('setContestant', contestant)
       axios.get('/get-works.php?id=' + id).then(res => {
-        const works = res.data
-        contestant['works'] = works
-        console.log(contestant)
-        commit('setContestant', contestant)
+        let works = []
+        for (const id in res.data) {
+          works.push(res.data[id])
+        }
+        commit('setWorks', works)
+      }).catch(error => console.log(error))
+    },
+
+    saveCounter ({commit, state}, payload) {
+      axios.post('/update-likes.php', {work_id: payload.work_id, inc: payload.inc})
+      .then(res => {
+        const counter = {id: payload.id, inc: payload.inc}
+        commit('setCounter', counter)
       }).catch(error => console.log(error))
     }
   },
@@ -47,6 +69,9 @@ export default new Vuex.Store({
     },
     contestant (state) {
       return state.contestant
+    },
+    works (state) {
+      return state.works
     }
   }
 })
